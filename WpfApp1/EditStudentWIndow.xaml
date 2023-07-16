@@ -1,0 +1,79 @@
+﻿<Window x:Class="WpfApp1.EditStudentWIndow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle }" Height="450" Width="800"
+        Background="#04151F">
+    <Window.DataContext>
+        <local:EditStudentWindowVM/>
+    </Window.DataContext>
+
+    <Grid Background="#FF0B3D62">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2" Margin="75,0,75,0">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/sdf.jpg"/>
+            </StackPanel.Background>
+            <Border Background="#FF91C9DA" BorderBrush="MediumAquamarine"
+                    BorderThickness="2" CornerRadius="100" Margin="10" MaxWidth="100" MinWidth="100" MaxHeight="100" MinHeight="100" >
+                <Image Source="{Binding Img }" HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Margin="10"  Width="80" Height="80"  />
+            </Border>
+
+
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Full Name : " Background="Transparent" Foreground="Black" FontSize="15"
+                           Margin="100 10 10 10"
+                           />
+                <TextBox Text="{Binding FirstName,UpdateSourceTrigger=PropertyChanged}" 
+                    Width="200" Background="#FFB3DBE7" Foreground="white" FontSize="20"
+                      Margin="10 5 10 10" />
+                <TextBox Text="{Binding LastName , UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="20" Foreground="White" BorderThickness="0"
+                      Margin="10 5 10 10"  Background="#FFB3DBE7"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Date of Birth : " Background="Transparent" Foreground="Black" FontSize="15"
+                           Margin="100 15 10 10"/>
+                <TextBlock Text="{Binding Dob,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" Margin="10" MaxWidth="90"
+                           FontSize="20"
+                           Background="White"/>
+                <DatePicker  SelectedDate="{Binding  Dob,UpdateSourceTrigger=PropertyChanged}"  Margin="10"  IsTodayHighlighted="True" DisplayDateStart="01/01/2000"
+                             Background="white" Foreground="black">
+                    <DatePicker.BlackoutDates>
+                        <CalendarDateRange Start="01/01/1930" End="12/31/0001"/>
+
+                    </DatePicker.BlackoutDates>
+                </DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="GPA : " Background="Transparent" Foreground="Black" FontSize="15" Margin="100 15 10 10" />
+                <TextBox Text="{Binding Gpa}" Margin="10" Foreground="Black" Background="White" Width="50" VerticalAlignment="Center"
+                           Padding="5" FontSize="20"
+                         HorizontalAlignment="Center"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="Image :" Background="Transparent" Foreground="Black"
+                           FontSize="15" Margin="100 15 10 10"/>
+                <Button Content="Upload Image"  Margin="10 10 10 10" HorizontalAlignment="Left"
+                        Command="{Binding UploadImageCommand}" Style="{StaticResource UploadImageButton}" Foreground="Black" />
+
+
+            </StackPanel>
+
+
+            <Button Content="Save" Command="{Binding SaveCommand}"  Style="{StaticResource Save Button}" BorderThickness="0" Foreground="Black" FontWeight="Bold"/>
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>
